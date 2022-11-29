@@ -83,7 +83,7 @@ class BeerDialogWrapper: DialogWrapper(true) {
             for(pair in requestParams) {
                 addToUrl(pair.key, pair.value)
             }
-            panel.add(InfoTable(url), gb.nextLine().next())
+            panel.add(InfoTable(url, false), gb.nextLine().next())
             isOk = true
         }
     }

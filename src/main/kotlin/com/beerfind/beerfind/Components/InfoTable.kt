@@ -1,13 +1,22 @@
 package com.beerfind.beerfind.Components
 
+import com.beerfind.beerfind.Data.Beer
 import com.beerfind.beerfind.Data.BeerData
 import com.intellij.ui.table.JBTable
 import javax.swing.table.DefaultTableModel
 
-class InfoTable(url: String): JBTable() {
-    private var beers = BeerData().GetResponse(url)
+class InfoTable(url: String, isRandom: Boolean): JBTable() {
     init {
         val model = DefaultTableModel()
+        val beers: List<Beer> = if (!isRandom) {
+            val beers1 = BeerData().GetResponse("$url&page=1")
+            val beers2 = BeerData().GetResponse("$url&page=2")
+            val beers3 = BeerData().GetResponse("$url&page=3")
+            val beers4 = BeerData().GetResponse("$url&page=4")
+            val beers5 = BeerData().GetResponse("$url&page=5")
+            beers1 + beers2 + beers3 + beers4 + beers5
+        } else
+            BeerData().GetResponse(url)
         model.addColumn("Property")
         model.addColumn("Value")
         model.addRow(arrayOf("Name", beers[0].name))

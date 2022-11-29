@@ -54,7 +54,7 @@ class RandomBeerWrapper: DialogWrapper(true) {
         panel.removeAll()
         if (!isOk) {
             panel.setSize(1200, 600)
-            panel.add(InfoTable(url), gb.nextLine().next())
+            panel.add(InfoTable(url, true), gb.nextLine().next())
             isOk = true
         }
     }
